@@ -1,7 +1,7 @@
 from smtplib import SMTP
 from threading import Thread
 from telebot import TeleBot
-
+from time import sleep
 
 def check_mail(mail, id):
     try:
@@ -22,6 +22,7 @@ count = 1
 with open("emails.txt") as f, open("good.txt", 'a') as g:
     for mail in f:
         if mail.strip() == "" or len(mail.split(":")) != 2: continue
+        sleep(0.05)
         Thread(target=check_mail, args=(mail, count)).start()
         count += 1
 
